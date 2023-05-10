@@ -1,4 +1,7 @@
-# Child Subscriptions for Bullet Train Billing
+# ☂️  Umbrella Subscriptions for Bullet Train Billing
+
+**Please Note:** This repo is brand new and is in active development. The docs below may be innaccurate
+and likely describe functionality that doesn't yet exist. Documentation driven development!
 
 ## Motivation
 
@@ -33,7 +36,7 @@ and teams are limited to 3.)
 
 ![solo](https://user-images.githubusercontent.com/58702/236496148-8b6b4587-95aa-4b15-940a-c978805d4e5c.png)
 
-In the case where a user has a band as well as their solo stuff Child Subscriptions allows them to "extend"
+In the case where a user has a band as well as their solo stuff Umbrella Subscriptions allows them to "extend"
 their solo subscription to also cover their band.
 
 ![solo_w_side](https://user-images.githubusercontent.com/58702/236496786-8aea4d96-dc97-418f-8361-1b2bacb18bec.png)
