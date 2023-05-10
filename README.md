@@ -64,6 +64,8 @@ start a brand new subscription or to "pull" the subscription from another team t
 
 In either case the existence of the `UmbrellaSubscription` should be visible for both teams somehow.
 
+This gem should provide a UI that is easy to include or activate in a BT project.
+
 ## Object Model
 
 Currently a `Billing::Subscription` `belongs_to` a single `Team` and the usage gem uses that relationship to find and enforce limits.
@@ -83,6 +85,8 @@ childTeam.current_billing_subscription =>
   Billing::Subscription.provider_subscription =>
   Billing::Stripe::Subscription
 ```
+
+This gem provides helpers that plug into the `usage` gem to make limit enforcement Just Work™.
 
 ## Role implementation
 
