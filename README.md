@@ -80,7 +80,7 @@ If `covered_team` and `covering_team` are both instances of `Team` then the obje
 ```
 covered_team.current_billing_subscription =>
   Billing::Subscription.provider_subscription =>
-  Billing::Subscriptions::ChildSubscription.parent_team =>
+  Billing::Subscriptions::UmbrellaSubscription.parent_team =>
   covering_team.current_billing_subscription =>
   Billing::Subscription.provider_subscription =>
   Billing::Stripe::Subscription
