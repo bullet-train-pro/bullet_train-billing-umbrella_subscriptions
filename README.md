@@ -51,63 +51,52 @@ and not part of the official BT implementation.
 
 ## User Experience
 
-For Seshy I'm thinking that there will be a "Billing Administrator" role, and that one permission granted to that role will be the abilities to:
-  * offer a subscription extension to other teams to which you belong
-  * accept a subscription extension from another team, even if you don't belong to the team extending the subscription
-  * request a subscription extension from another team to which you belong
-  * approve an extension request from another team, even if you don't belong to that team
-  
-If a user is a Billing Admin for both the source team and the destination team then it would be nice for it to be an all-in-one process of just creating the extension directly instead of it being a two part process of offer/request => approve.
+A user who is an `admin` for both teams may create an `UmbrellaSubscription` that allows the subscription owned
+by the `covering_team` (is that the right name for that) to cover another team.
 
-I think that the current billing dashboard could add a link on the current subscription that says "extend subscription" that takes you to a screen that lets you start the process of extending it, and that shows the list of teams currently covered by the subscription.
+I think that the current billing dashboard could add a link on the current subscription that says "extend subscription"
+that takes you to a screen that lets you start the process of extending it, and that shows the list of teams currently
+covered by the subscription. This would be kind of a "push model", where you push coverage out from the team that owns
+the subscription.
+
+There could also be a "pull model" where you would be in the team-to-be-covered and would be given the choice to either
+start a brand new subscription or to "pull" the subscription from another team to cover your team.
+
+In either case the existence of the `UmbrellaSubscription` should be visible for both teams somehow.
 
 ## Object Model
 
 Currently a `Billing::Subscription` `belongs_to` a single `Team` and the usage gem uses that relationship to find and enforce limits.
 
-To extend a `Subscription` to additional `Teams` I think we'll need a new join model. Something like:
+To extend a `Subscription` to additional `Teams` we've added a new `Subscription` subtype known as `Billing::Subscriptions::UmbrellaSubscription`.
 
-```ruby
-class Billing::TeamSubscription
-  belongs_to :team
+This is a unique type of subscription that doesn't determine its plan limits directly, instead it looks at the `covering_team` and
+uses _its_ subscription as the way to determine limits.
 
-  belongs_to :billing_subscription
+If `covered_team` and `covering_team` are both instances of `Team` then the object model traversal looks something like this:
 
-  # Alternatively we might want to keep a link to the team that is
-  # extending the subscription and then traverse that relationship
-  # to find the subscription that applies for this team.
-  belongs_to :paying_team
-  has_one :billing_subscription, through: :paying_team
-end
 ```
-
-A `Subscription` would still need to `belong_to` a single `Team` for purposes of determining which users are allowed to update the `Subscription` itself.
-
-To facilitate the offer/request scenario we may want an additional model that functions similar to how the `Invitation` model works for `Memberships`.
-
-```ruby
-class Billing::TeamSubscriptionInvitation
-  belongs_to :source_team # The team that is extending the invitation
-  belongs_to :destination_team # The team that is receiving the extension
-end
+childTeam.current_billing_subscription =>
+  Billing::Subscription.provider_subscription =>
+  Billing::Subscriptions::ChildSubscription.parent_team =>
+  parentTeam.current_billing_subscription =>
+  Billing::Subscription.provider_subscription =>
+  Billing::Stripe::Subscription
 ```
-
-It's possible we may need an additional model to distinguish between an extension "request" and an extension "offer". In which case we may want to go with something like `Billing::TeamSubscriptionExtensionRequest` and `Billing::TeamSubscriptionExtensionOffer`.
 
 ## Role implementation
 
-I think the existing enforcement mechanisms in the usage gem should get us most of the way there, and would allow for some flexibility in how people use this feature.
+I think the existing enforcement mechanisms in the usage gem should get us most of the way there, and would allow for some flexibility
+in how people use this feature.
 
 ```yml
 # config/models/roles.yml
 
-team_admin:
+default:
   models:
-    Billing::TeamSubscriptionExtensionRequest: create
+    Billing::Subscriptions::UmbrellaSubscription: read
 
-billing_admin:
+admin:
   models:
-    Billing::TeamSubscription: manage
-    Billing::TeamSubscriptionInvitation: manage
-    Billing::TeamSubscriptionExtensionRequest: manage
+    Billing::Subscriptions::UmbrellaSubscription: manage
 ```
