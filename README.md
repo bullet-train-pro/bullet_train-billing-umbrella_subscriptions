@@ -78,10 +78,10 @@ uses _its_ subscription as the way to determine limits.
 If `covered_team` and `covering_team` are both instances of `Team` then the object model traversal looks something like this:
 
 ```
-childTeam.current_billing_subscription =>
+covered_team.current_billing_subscription =>
   Billing::Subscription.provider_subscription =>
   Billing::Subscriptions::ChildSubscription.parent_team =>
-  parentTeam.current_billing_subscription =>
+  covering_team.current_billing_subscription =>
   Billing::Subscription.provider_subscription =>
   Billing::Stripe::Subscription
 ```
