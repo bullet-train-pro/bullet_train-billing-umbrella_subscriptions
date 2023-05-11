@@ -131,6 +131,7 @@ jobs:
       - run: yarn build
       - run: yarn build:css
 
+
       - save_cache: *save_bundler_cache
 
       # TODO Figure out how to make these work for `tmp/starter`
@@ -138,6 +139,7 @@ jobs:
 
       - *wait_for_docker
 
+      - run: ./bin/rails db:migrate
       - run:
           name: Run tests with Knapsack Pro
           command: bundle exec rails "knapsack_pro:queue:minitest[--verbose]"
@@ -200,6 +202,7 @@ jobs:
 
       - *wait_for_docker
 
+      - run: ./bin/rails db:migrate
       - run: "bundle add spring"
       - run:
           name: 'Setup Super Scaffolding System Test'
