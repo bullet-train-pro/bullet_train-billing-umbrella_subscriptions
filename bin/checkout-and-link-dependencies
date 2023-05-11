@@ -41,7 +41,8 @@ do
 cd deps/$dep
 git branch -r
 BRANCH_NAMES=$(git branch -r)
-cd ..
+# TODO: Try to switch branches or something
+cd ../..
 
 echo"------- before doing anything"
 cat Gemfile
