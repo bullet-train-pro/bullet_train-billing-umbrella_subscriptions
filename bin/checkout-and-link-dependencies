@@ -2,6 +2,7 @@
 
 echo "checking out and linking deps in dir: "
 pwd
+ls -al
 
 DEPENDENCIES=( bullet_train-billing bullet_train-billing-usage)
 
@@ -9,7 +10,6 @@ mkdir deps
 
 for dep in "${DEPENDENCIES[@]}"
 do
-  :
 
 # TODO: Figure out how to get a branch list for a private repo. Maybe we have to clone the repo first and then switch branches?
 

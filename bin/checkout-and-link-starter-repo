@@ -41,7 +41,9 @@ done
 
 cat Gemfile
 echo "------"
+
 pwd
+ls -al
 
 updates="${packages[@]}"
 
