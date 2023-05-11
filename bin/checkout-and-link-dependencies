@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
+echo "checking out and linking deps in dir: "
+pwd
+
 DEPENDENCIES=( bullet_train-billing bullet_train-billing-usage)
 
 mkdir deps
 
 for dep in "${DEPENDENCIES[@]}"
 do
-
+  :
 
 # TODO: Figure out how to get a branch list for a private repo. Maybe we have to clone the repo first and then switch branches?
 
@@ -40,6 +43,9 @@ git branch -r
 BRANCH_NAMES=$(git branch -r)
 cd ..
 
+
+grep -v "gem \"$dep\"" Gemfile > Gemfile.tmp
+mv Gemfile.tmp Gemfile
 echo "gem \"$dep\", path: \"./deps/$dep\"" >> Gemfile
 
 cat Gemfile
