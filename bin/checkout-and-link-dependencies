@@ -34,7 +34,7 @@ do
 #fi
 
 
-echo "gem '$dep', path: './deps/$dep'" >> Gemfile
+echo "gem \"$dep\", path: \"./deps/$dep\"" >> Gemfile
 
 cat Gemfile
 
