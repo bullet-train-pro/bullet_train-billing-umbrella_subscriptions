@@ -51,6 +51,9 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+
+      - run: bin/checkout-and-link-dependencies
+
       - browser-tools/install-browser-tools:
           firefox-version: 108.0.1
 
