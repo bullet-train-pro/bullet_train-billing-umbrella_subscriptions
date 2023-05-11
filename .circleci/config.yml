@@ -76,6 +76,8 @@ jobs:
 
       - run: bin/checkout-and-link-dependencies
 
+      - run: pwd
+
       - run: ls -al
 
       # Install dependencies
