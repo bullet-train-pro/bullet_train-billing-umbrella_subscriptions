@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     bullet_train-billing-umbrella_subscriptions (0.1.0)
+      active_hash
       bullet_train
       bullet_train-billing
       bullet_train-billing-usage
