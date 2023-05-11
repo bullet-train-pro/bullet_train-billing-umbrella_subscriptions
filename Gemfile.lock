@@ -3,6 +3,8 @@ PATH
   specs:
     bullet_train-billing-umbrella_subscriptions (0.1.0)
       bullet_train
+      bullet_train-billing
+      bullet_train-billing-usage
       rails (>= 6.0)
       verbs
 
@@ -86,6 +88,13 @@ GEM
       bullet_train-scope_validator
       bullet_train-super_load_and_authorize_resource
       rails (>= 7.0.0)
+    bullet_train-billing (1.0.3)
+      bullet_train
+      rails (>= 6.0)
+    bullet_train-billing-usage (1.0.10)
+      bullet_train
+      rails (>= 6.0)
+      verbs
     bullet_train-fields (1.2.24)
       chronic
       cloudinary
