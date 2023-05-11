@@ -44,21 +44,20 @@ BRANCH_NAMES=$(git branch -r)
 # TODO: Try to switch branches or something
 cd ../..
 
-echo"------- before doing anything"
-cat Gemfile
-echo"------- about to filter out $dep"
 grep -v "gem \"$dep\"" Gemfile > Gemfile.tmp
 mv Gemfile.tmp Gemfile
-cat Gemfile
-
-echo"------- about to add back $dep"
 echo "gem \"$dep\", path: \"./deps/$dep\"" >> Gemfile
-
-cat Gemfile
 
 done
 
 bundle install
+
+echo "------- bundle installed"
+echo bundle show --paths | grep bullet_train-billing | sort | head -n 1
+
+echo "------- bundle show paths"
+
+bundle show --paths
 
 if [ -d "./db/migrate" ]
 then
