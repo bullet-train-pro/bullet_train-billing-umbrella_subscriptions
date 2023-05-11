@@ -26,3 +26,7 @@
 #fi
 
 
+echo "gem 'bullet_train-billing', path: './bullet_train-billing'" >> Gemfile
+
+cat Gemfile
+
