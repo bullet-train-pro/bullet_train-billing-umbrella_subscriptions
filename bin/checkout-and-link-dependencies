@@ -2,6 +2,8 @@
 
 DEPENDENCIES=( bullet_train-billing bullet_train-billing-usage)
 
+mkdir deps
+
 for dep in "${DEPENDENCIES[@]}"
 do
 
@@ -28,11 +30,11 @@ do
   #echo "Cloning from ${REPO_BRANCH}..."
   #git clone -b $REPO_BRANCH https://github.com/bullet-train-pro/bullet_train-billing.git .
 #else
-  git clone https://github.com/bullet-train-pro/$dep.git ./$dep
+  git clone https://github.com/bullet-train-pro/$dep.git ./deps/$dep
 #fi
 
 
-echo "gem '$dep', path: './$dep'" >> Gemfile
+echo "gem '$dep', path: './deps/$dep'" >> Gemfile
 
 cat Gemfile
 
