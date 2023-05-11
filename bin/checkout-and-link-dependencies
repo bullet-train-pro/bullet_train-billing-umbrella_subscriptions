@@ -8,6 +8,8 @@ for dep in "${DEPENDENCIES[@]}"
 do
 
 
+# TODO: Figure out how to get a branch list for a private repo. Maybe we have to clone the repo first and then switch branches?
+
 # Look for a matching branch on the starter repository when running tests on CircleCI.
 #CI_BRANCH=$CIRCLE_BRANCH
 #if [[ -v CI_BRANCH ]]
@@ -33,6 +35,10 @@ do
   git clone https://github.com/bullet-train-pro/$dep.git ./deps/$dep
 #fi
 
+cd deps/$dep
+git branch -r
+BRANCH_NAMES=$(git branch -r)
+cd ..
 
 echo "gem \"$dep\", path: \"./deps/$dep\"" >> Gemfile
 
