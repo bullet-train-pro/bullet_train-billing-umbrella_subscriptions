@@ -1,3 +1,3 @@
-require 'active_hash'
+require "active_hash"
 class ApplicationHash < ActiveHash::Base
 end
