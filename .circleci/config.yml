@@ -117,7 +117,11 @@ jobs:
       - run:
           command: rm LICENSE.chromedriver
 
+      - run: pwd
+      - run: ls -al
+
       - run: ../../bin/checkout-and-link-starter-repo
+      - run: ../../bin/checkout-and-link-dependencies
 
       - restore_cache: *restore_bundler_cache
       - run: bundle install
