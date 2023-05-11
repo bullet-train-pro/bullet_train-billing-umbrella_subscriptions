@@ -22,7 +22,7 @@
   #echo "Cloning from ${REPO_BRANCH}..."
   #git clone -b $REPO_BRANCH https://github.com/bullet-train-pro/bullet_train-billing.git .
 #else
-  git clone https://github.com/bullet-train-pro/bullet_train-billing.git .
+  git clone https://github.com/bullet-train-pro/bullet_train-billing.git ./bullet_train-billing
 #fi
 
 
