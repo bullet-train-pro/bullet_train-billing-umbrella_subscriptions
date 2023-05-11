@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
-require_relative "umbrella_subscriptions/version"
+require "bullet_train/billing/umbrella_subscriptions/version"
+require "bullet_train/billing/umbrella_subscriptions/railtie"
 
 module BulletTrain
   module Billing

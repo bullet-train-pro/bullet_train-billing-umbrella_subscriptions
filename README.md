@@ -3,6 +3,22 @@
 **Please Note:** This repo is brand new and is in active development. The docs below may be innaccurate
 and likely describe functionality that doesn't yet exist. Documentation driven development!
 
+## Installation
+Add this line to your application's Gemfile:
+
+```ruby
+gem "bullet_train-billing-umbrella_subscriptions"
+```
+
+And then execute:
+```bash
+$ bundle
+```
+
+Or install it yourself as:
+```bash
+$ gem install bullet_train-billing-umbrella_subscriptions
+
 ## Motivation
 
 Sometimes it's inconvenient for every team to have a unique subscription. For instance an enterprise
@@ -104,3 +120,9 @@ admin:
   models:
     Billing::Subscriptions::UmbrellaSubscription: manage
 ```
+
+## Contributing
+
+Contribution directions go here.
+
+
