@@ -40,6 +40,8 @@ do
 done
 
 cat Gemfile
+echo "------"
+pwd
 
 updates="${packages[@]}"
 

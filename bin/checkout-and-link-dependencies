@@ -43,9 +43,14 @@ git branch -r
 BRANCH_NAMES=$(git branch -r)
 cd ..
 
-
+echo"------- before doing anything"
+cat Gemfile
+echo"------- about to filter out $dep"
 grep -v "gem \"$dep\"" Gemfile > Gemfile.tmp
 mv Gemfile.tmp Gemfile
+cat Gemfile
+
+echo"------- about to add back $dep"
 echo "gem \"$dep\", path: \"./deps/$dep\"" >> Gemfile
 
 cat Gemfile
