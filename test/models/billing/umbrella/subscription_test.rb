@@ -6,5 +6,4 @@ class Billing::Umbrella::SubscriptionTest < ActiveSupport::TestCase
     umbrella_subscription = Billing::Umbrella::Subscription.new
     assert umbrella_subscription
   end
-
 end
