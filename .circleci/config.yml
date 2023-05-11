@@ -74,6 +74,10 @@ jobs:
       # - restore_cache: *restore_bundler_cache
       # - restore_cache: *restore_yarn_cache
 
+      - run: bin/checkout-and-link-dependencies
+
+      - run: ls -al
+
       # Install dependencies
       - ruby/bundle-install
       - run: bundle clean --force
