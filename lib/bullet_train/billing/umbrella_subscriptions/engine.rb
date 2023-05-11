@@ -1,7 +1,7 @@
 module BulletTrain
   module Billing
     module UmbrellaSubscriptions
-      class Railtie < ::Rails::Railtie
+      class Engine < ::Rails::Engine
       end
     end
   end
