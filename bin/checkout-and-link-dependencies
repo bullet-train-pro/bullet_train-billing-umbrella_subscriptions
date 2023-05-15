@@ -51,7 +51,7 @@ for BRANCH in $BRANCH_NAMES; do
   fi
 done
 echo "The branch we're going to use:\n\n${REPO_BRANCH}"
-git switch REPO_BRANCH
+git switch $REPO_BRANCH
 cd ../..
 
 grep -v "gem \"$dep\"" Gemfile > Gemfile.tmp
