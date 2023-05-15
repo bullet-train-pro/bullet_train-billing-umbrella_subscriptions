@@ -20,6 +20,15 @@ Or install it yourself as:
 $ gem install bullet_train-billing-umbrella_subscriptions
 ```
 
+## Copy Database Migrations
+
+Use the following command on your shell to copy the required migrations into your local project:
+
+```bash
+cp `bundle show --paths | grep bullet_train-billing-umbrella_subscriptions | sort | head -n 1`/db/migrate/* db/migrate
+```
+Note this is different than how many Rails engines ask you to install migrations. This is intentional, as we want to maintain the original timestamps associated with these migrations.
+
 ## Motivation
 
 Sometimes it's inconvenient for every team to have a unique subscription. For instance an enterprise
