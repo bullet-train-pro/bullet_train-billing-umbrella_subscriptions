@@ -41,7 +41,17 @@ do
 cd deps/$dep
 git branch -r
 BRANCH_NAMES=$(git branch -r)
-# TODO: Try to switch branches or something
+echo "These are the branches on the dependency repo:\n\n${BRANCH_NAMES}"
+REPO_BRANCH="main"
+for BRANCH in $BRANCH_NAMES; do
+  if [ ${BRANCH} == "origin/$CIRCLE_BRANCH" ]
+  then
+    REPO_BRANCH=$CIRCLE_BRANCH
+    break
+  fi
+done
+echo "The branch we're going to use:\n\n${REPO_BRANCH}"
+git switch REPO_BRANCH
 cd ../..
 
 grep -v "gem \"$dep\"" Gemfile > Gemfile.tmp
