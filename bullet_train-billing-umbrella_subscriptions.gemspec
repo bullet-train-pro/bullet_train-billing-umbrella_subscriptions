@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pg", "~> 1.4.5"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
   spec.add_development_dependency "standard"
+  spec.add_development_dependency "debug"
 end
