@@ -18,6 +18,7 @@ $ bundle
 Or install it yourself as:
 ```bash
 $ gem install bullet_train-billing-umbrella_subscriptions
+```
 
 ## Motivation
 
