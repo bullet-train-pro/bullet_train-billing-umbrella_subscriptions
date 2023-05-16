@@ -1,0 +1,13 @@
+
+<%= form_with model: subscription, url: (subscription.persisted? ? [:account, subscription] : [:account, @team, :billing_umbrella_subscriptions]), local: true, class: 'form' do |form| %>
+  <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
+    <%= render 'account/shared/forms/errors', form: form %>
+
+    <%= form.hidden_field :status, value: "canceled" %>
+
+    <div class="buttons">
+      <%= form.submit t('.buttons.cancel'), class: "button" %>
+      <%= link_to t('global.buttons.back'), cancel_path, class: "button-secondary" %>
+    </div>
+  <% end %>
+<% end %>

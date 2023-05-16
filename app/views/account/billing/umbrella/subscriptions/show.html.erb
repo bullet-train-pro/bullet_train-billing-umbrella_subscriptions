@@ -1,0 +1,31 @@
+<%= render 'account/shared/page' do |page| %>
+  <% page.title t('.section') %>
+  <% page.body do %>
+    <%= updates_for @subscription do %>
+      <%= render 'account/shared/box', divider: true do |box| %>
+        <% box.title t('.header') %>
+        <% box.description do %>
+          <%= t('.description') %>
+          <%= t('.manage_description') if can? :manage, @subscription %>
+        <% end %>
+
+        <% box.body do %>
+          <% with_attribute_settings object: @subscription, strategy: :label do %>
+            <%= render 'shared/attributes/belongs_to', attribute: :covering_team %>
+            <%# 🚅 super scaffolding will insert new fields above this line. %>
+          <% end %>
+        <% end %>
+
+        <% box.actions do %>
+          <%= render 'cancel_form', subscription: @subscription, cancel_path: url_for([:account, current_team, :billing, :subscriptions])  %>
+        <% end %>
+
+        <% box.raw_footer do %>
+          <%# 🚅 super scaffolding will insert new action model index views above this line. %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%# 🚅 super scaffolding will insert new children above this line. %>
+  <% end %>
+<% end %>

@@ -1,23 +1,123 @@
+#en:
+  #billing/umbrella/subscriptions: &subscriptions
+    #teaser:
+      #intro: You may be able to cover your team with an Umbrella Subscription from another team.
+      #link: Click here to learn more.
+    #fields:
+      #umbrella_subscription_id:
+        #_: &umbrella_subscription_id Umbrella Subscription ID
+        #label: *umbrella_subscription_id
+        #heading: *umbrella_subscription_id
+    #notifications:
+      #refreshed: Subscription was successfully updated!
+  #account:
+    #billing:
+      #umbrella:
+        #subscriptions: # *subscriptions
+          #breadcrumbs:
+            #label: Umbrella Subscriptions
+
+  #activerecord:
+    #attributes:
+      #billing/umbrella/subscription:
+        #umbrella_subscription_id: *umbrella_subscription_id
+
 en:
   billing/umbrella/subscriptions: &subscriptions
+    label: &label Umbrella Subscriptions
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
     teaser:
       intro: You may be able to cover your team with an Umbrella Subscription from another team.
       link: Click here to learn more.
-    fields:
-      umbrella_subscription_id:
-        _: &umbrella_subscription_id Umbrella Subscription ID
-        label: *umbrella_subscription_id
-        heading: *umbrella_subscription_id
+    buttons: &buttons
+      new: Add New Umbrella Subscription
+      create: Create Umbrella Subscription
+      edit: Edit Umbrella Subscription
+      update: Update Umbrella Subscription
+      destroy: Remove Umbrella Subscription
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{subscription_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Umbrella Subscription ID
+      covering_team_id:
+        heading: Covering Team ID
+      covering_team_id: &covering_team
+        _: &covering_team_id Covering Team
+        label: *covering_team_id
+        heading: *covering_team_id
+        placeholder: Select
+      covering_team: *covering_team
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Umbrella Subscriptions"
+      index: "List Umbrella Subscriptions"
+      create: "Add a New Umbrella Subscription"
+      member_actions: "Actions for an Individual Umbrella Subscription"
+      show: "Retrieve a Umbrella Subscription"
+      update: "Update a Umbrella Subscription"
+      destroy: "Delete a Umbrella Subscription"
+      fields: *fields
+    index:
+      section: "%{teams_possessive} Umbrella Subscriptions"
+      contexts:
+        team:
+          header: Umbrella Subscriptions
+          description: Below is a list of Umbrella Subscriptions that have been added for %{team_name}.
+          description_empty: No Umbrella Subscriptions have been added for %{team_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{subscription_name}"
+      header: Umbrella Subscription Details
+      description: Below are the details we have for %{subscription_name}.
+      manage_description: You'll also find options for updating these details or removing %{subscription_name} from %{team_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    cancel_form: &form
+      buttons:
+        cancel: Cancel this Umbrella Subscription
+    new:
+      section: "New Umbrella Subscription for %{team_name}"
+      header: New Umbrella Subscription Details
+      description: Please provide the details of the new Umbrella Subscription you'd like to add to %{team_name}.
+      form: *form
+    edit:
+      section: "%{subscription_name}"
+      header: Edit Umbrella Subscription Details
+      description: You can update the details or settings for %{subscription_name} below.
+      form: *form
     notifications:
-      refreshed: Subscription was successfully updated!
+      created: Umbrella Subscription was successfully created.
+      updated: Umbrella Subscription was successfully updated.
+      destroyed: Umbrella Subscription was successfully destroyed.
   account:
     billing:
       umbrella:
-        subscriptions: # *subscriptions
-          breadcrumbs:
-            label: Umbrella Subscriptions
-
+        subscriptions: *subscriptions
   activerecord:
     attributes:
       billing/umbrella/subscription:
-        umbrella_subscription_id: *umbrella_subscription_id
+        covering_team_id: *covering_team_id
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

@@ -1,9 +1,9 @@
 
-<%= button_to "Manage", [:edit, :account, subscription.provider_subscription], data: {turbo: 'false'}, class: "button-secondary button-smaller" %>
 
 <% if subscription.pending? %>
   <%#= button_to "Complete Purchase", [:checkout, :account, subscription.provider_subscription], method: :post, data: {turbo: 'false'}, class: "button button-smaller" %>
 <% elsif subscription.active? %>
+  <%= link_to "Manage", [:account, subscription.provider_subscription], class: "button button-smaller" %>
   <%#= button_to "History", [:portal, :account, subscription.provider_subscription], method: :post, data: {turbo: 'false'}, class: "button-secondary button-smaller" %>
   <%#= button_to "Manage", [:portal, :account, subscription.provider_subscription], method: :post, data: {turbo: 'false'}, class: "button button-smaller" %>
 <% else %>
