@@ -1,0 +1,23 @@
+en:
+  billing/umbrella/subscriptions: &subscriptions
+    teaser:
+      intro: You may be able to cover your team with an Umbrella Subscription from another team.
+      link: Click here to learn more.
+    fields:
+      umbrella_subscription_id:
+        _: &umbrella_subscription_id Umbrella Subscription ID
+        label: *umbrella_subscription_id
+        heading: *umbrella_subscription_id
+    notifications:
+      refreshed: Subscription was successfully updated!
+  account:
+    billing:
+      umbrella:
+        subscriptions: # *subscriptions
+          breadcrumbs:
+            label: Umbrella Subscriptions
+
+  activerecord:
+    attributes:
+      billing/umbrella/subscription:
+        umbrella_subscription_id: *umbrella_subscription_id
