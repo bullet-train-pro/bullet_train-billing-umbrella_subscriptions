@@ -1,6 +1,8 @@
-<div class="mb-8">
-  <%= render 'account/shared/alert' do %>
-    <%= t('billing/umbrella/subscriptions.teaser.intro').html_safe %>
-    <%= link_to t('billing/umbrella/subscriptions.teaser.link'), [:new, :account, current_team, :billing, :umbrella, :subscription]  %>
-  <% end %>
-</div>
+<% if Billing::Umbrella::Subscription.new.valid_teams.any? %>
+  <div class="mb-8">
+    <%= render 'account/shared/alert' do %>
+      <%= t('billing/umbrella/subscriptions.teaser.intro').html_safe %>
+      <%= link_to t('billing/umbrella/subscriptions.teaser.link'), [:new, :account, current_team, :billing, :umbrella, :subscription]  %>
+    <% end %>
+  </div>
+<% end %>
