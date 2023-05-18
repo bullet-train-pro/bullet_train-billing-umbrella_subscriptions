@@ -9,6 +9,10 @@ module BulletTrain::Billing::UmbrellaSubscriptions::TeamMonkeyPatch
     end
 
     def umbrella_subscription_cover_limt_reached?
+      # First we have to check our recurssion bailout condition
+      if current_billing_subscription && current_billing_subscription.provider_subscription_type == "Billing::Umbrella::Subscription"
+        return true
+      end
       limiter = Billing::Limiter.new(self)
       # TODO: This assumes that the covering team has only one subscription, because we seem to assume that BT teams
       # only have one subscription. If that changes this will need to be tweaked.
