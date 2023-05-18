@@ -57,9 +57,9 @@ en:
         placeholder: Select
       covering_team: *covering_team
       team_id:
-        heading: Team ID
+        heading: Covered Team ID
       team_id: &team
-        _: &team_id Team
+        _: &team_id Covered Team
         label: *team_id
         heading: *team_id
         placeholder: Select

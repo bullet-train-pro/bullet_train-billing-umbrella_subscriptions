@@ -5,8 +5,12 @@
     <%= render 'account/shared/forms/errors', form: form %>
 
     <% with_field_settings form: form do %>
+
+      <%= render 'shared/fields/super_select', method: :team_id, options: {autofocus: true}, html_options: {autofocus: true},
+        choices: @subscription.valid_covered_teams.map { |team| [team.label_string, team.id] } %>
+
       <%= render 'shared/fields/super_select', method: :covering_team_id, options: {autofocus: true}, html_options: {autofocus: true},
-        choices: @subscription.valid_teams.map { |team| [team.label_string, team.id] } %>
+        choices: @subscription.valid_covering_teams.map { |team| [team.label_string, team.id] } %>
       <%# 🚅 super scaffolding will insert new fields above this line. %>
     <% end %>
 

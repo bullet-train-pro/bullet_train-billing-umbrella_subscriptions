@@ -1,4 +1,4 @@
-<% if Billing::Umbrella::Subscription.new.valid_teams.any? %>
+<% if Billing::Umbrella::Subscription.new.valid_covering_teams.any? %>
   <div class="mb-8">
     <%= render 'account/shared/alert' do %>
       <%= t('billing/umbrella/subscriptions.teaser.intro').html_safe %>

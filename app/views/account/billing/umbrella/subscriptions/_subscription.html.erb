@@ -1,0 +1,24 @@
+<% team = @team || @team %>
+<% context ||= team %>
+<% collection ||= :billing_umbrella_subscriptions %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: subscription do %>
+  <tr data-id="<%= subscription.id %>">
+    <%= render "shared/tables/checkbox", object: subscription %>
+    <td>
+      <%= render 'shared/attributes/belongs_to', attribute: :team, url: [:account, subscription] %>
+    </td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, subscription %>
+          <%= link_to t('.buttons.shorthand.edit'), [:account, subscription], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

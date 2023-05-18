@@ -23,6 +23,13 @@ class Account::Billing::Umbrella::SubscriptionsController < Account::Application
   # POST /account/teams/:team_id/billing/umbrella/subscriptions.json
   def create
     respond_to do |format|
+      covered_team_id = subscription_params[:team_id]
+      valid_team_ids = Billing::Umbrella::Subscription.new.valid_covered_teams.map(&:id)
+      # TODO: There's probably a better way to do this, but this allows us to "push" an umbrella subscription to another team.
+      # Maybe we can figure out how to define valid_covered_teams in a way that's hard to express via CanCanCan abilities.
+      if valid_team_ids.include?(covered_team_id.to_i)
+        @subscription.team_id = covered_team_id
+      end
       if @subscription.save
         format.html { redirect_to [:account, current_team, :billing, :subscriptions], notice: I18n.t("billing/umbrella/subscriptions.notifications.created") }
         format.json { render :show, status: :created, location: [:account, @subscription] }
@@ -60,6 +67,6 @@ class Account::Billing::Umbrella::SubscriptionsController < Account::Application
   private
 
   def subscription_params
-    params.require(:billing_umbrella_subscription).permit(:covering_team_id, :status)
+    params.require(:billing_umbrella_subscription).permit(:covering_team_id, :status, :team_id)
   end
 end
