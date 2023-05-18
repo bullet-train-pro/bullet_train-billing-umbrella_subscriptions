@@ -1,4 +1,4 @@
-<% cancel_path ||= subscription.persisted? ? [:account, subscription] : [:account, @team, :billing_umbrella_subscriptions] %>
+<% cancel_path ||=  [:account, @team, :billing, :subscriptions] %>
 
 <%= form_with model: subscription, url: (subscription.persisted? ? [:account, subscription] : [:account, @team, :billing_umbrella_subscriptions]), local: true, class: 'form' do |form| %>
   <%= render "shared/limits/form", form: form, cancel_path: cancel_path do %>
