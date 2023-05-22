@@ -44,6 +44,14 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     within_team_menu_for(display_details) do
       click_link "Billing"
     end
+    assert page.has_content?("Subscriptions")
+
+    pp Team.all.as_json
+    puts "-" * 90
+    pp Billing::Subscription.all.as_json
+    puts "-" * 90
+
+
     assert page.has_content?("Umbrella Subscriptions")
 
     click_on "Add New Umbrella Subscription"
