@@ -15,7 +15,7 @@ free:
         enforcement: hard
 solo:
   price: solo_2023
-  image: "vol1.png"
+  image: "sparkles.png"
   limits:
     memberships:
       have:
@@ -44,7 +44,7 @@ solo:
       interval: year
 band:
   price: band_2023
-  image: "vol2.png"
+  image: "sparkles.png"
   limits:
     memberships:
       have:
@@ -73,7 +73,7 @@ band:
       highlight: true
 producer:
   price: producer_2023
-  image: "vol3.png"
+  image: "sparkles.png"
   limits:
     memberships:
       have:
