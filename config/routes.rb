@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :account do
     shallow do
       resources :teams, only: [] do

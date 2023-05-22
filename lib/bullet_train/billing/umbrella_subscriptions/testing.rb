@@ -15,7 +15,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     subscription = Billing::Subscription.create!({
       team: @team,
       provider_subscription: provider_subscription,
-      status: 'active'
+      status: "active"
     })
 
     Billing::Subscriptions::IncludedPrice.create!(

@@ -14,7 +14,7 @@ class Billing::Umbrella::Subscription < ApplicationRecord
 
   def create_generic_subscription
     Billing::Subscription.create!({
-      team: self.team,
+      team: team,
       provider_subscription: self,
       status: "active"
     })
@@ -28,7 +28,7 @@ class Billing::Umbrella::Subscription < ApplicationRecord
     valid_team_ids = []
 
     # First grab all the memberships for which the current user has the admin role
-    memberships = Current.user.memberships.where('role_ids ?& array[:keys]', keys: ['admin'])
+    memberships = Current.user.memberships.where("role_ids ?& array[:keys]", keys: ["admin"])
 
     # Now loop the memberships, and if the team has not reached the cover limit add the id to the array
     memberships.each do |membership|
@@ -48,7 +48,7 @@ class Billing::Umbrella::Subscription < ApplicationRecord
     valid_team_ids = []
 
     # First grab all the memberships for which the current user has the admin role
-    memberships = Current.user.memberships.where('role_ids ?& array[:keys]', keys: ['admin'])
+    memberships = Current.user.memberships.where("role_ids ?& array[:keys]", keys: ["admin"])
 
     # Now loop the memberships, and if the team does not have an active subscription of some kind
     memberships.each do |membership|
@@ -61,7 +61,7 @@ class Billing::Umbrella::Subscription < ApplicationRecord
   end
 
   def covering_team_cover_limit
-    if(covering_team.umbrella_subscription_cover_limt_reached?)
+    if covering_team.umbrella_subscription_cover_limt_reached?
       errors.add(:base, "The team you selected is not allowed to cover any additional teams.")
     end
   end

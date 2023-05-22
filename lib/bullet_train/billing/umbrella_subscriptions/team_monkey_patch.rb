@@ -23,7 +23,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::TeamMonkeyPatch
           return false
         end
       end
-      return true
+      true
     end
 
     def can_extend_umbrella_subscriptions?
@@ -41,7 +41,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::TeamMonkeyPatch
           return true
         end
       end
-      return false
+      false
     end
   end
 end
