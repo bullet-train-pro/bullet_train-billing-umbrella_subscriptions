@@ -21,7 +21,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
 
     Billing::Subscriptions::IncludedPrice.create!(
       subscription: subscription,
-      price_id: "band_monthly_2023",
+      price_id: "pro_monthly_2023",
       quantity: 1
     )
   end
@@ -55,7 +55,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "band", limiter.current_products.first.id
+    assert_equal "pro", limiter.current_products.first.id
 
     click_on "Edit"
     assert page.has_content?("Umbrella Subscription Details")
@@ -101,7 +101,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "band", limiter.current_products.first.id
+    assert_equal "pro", limiter.current_products.first.id
 
     click_on "Manage"
     assert page.has_content?("Umbrella Subscription Details")

@@ -13,8 +13,8 @@ free:
       cover:
         count: 0
         enforcement: hard
-solo:
-  price: solo_2023
+basic:
+  price: basic_2023
   image: "sparkles.png"
   limits:
     memberships:
@@ -31,19 +31,19 @@ solo:
         count: 0
         enforcement: hard
   prices:
-    solo_monthly_2023:
+    basic_monthly_2023:
       amount: 800
       currency: USD
       duration: 1
       interval: month
       #trial_days: 1
-    solo_annual_2023:
+    basic_annual_2023:
       amount: 8000
       currency: USD
       duration: 1
       interval: year
-band:
-  price: band_2023
+pro:
+  price: pro_2023
   image: "sparkles.png"
   limits:
     memberships:
@@ -58,43 +58,16 @@ band:
       cover:
         count: 2
   prices:
-    band_monthly_2023:
+    pro_monthly_2023:
       amount: 2400
       currency: USD
       duration: 1
       interval: month
       #trial_days: 1
       highlight: true
-    band_annual_2023:
+    pro_annual_2023:
       amount: 24000
       currency: USD
       duration: 1
       interval: year
       highlight: true
-producer:
-  price: producer_2023
-  image: "sparkles.png"
-  limits:
-    memberships:
-      have:
-        count: null
-        enforcement: soft
-    scaffolding/absolutely_abstract/creative_concepts:
-      have:
-        count: null
-    billing/umbrella/subscriptions:
-      cover:
-        count: 20
-        enforcement: hard
-  prices:
-    producer_monthly_2023:
-      amount: 7400
-      currency: USD
-      duration: 1
-      interval: month
-      #trial_days: 0
-    producer_annual_2023:
-      amount: 74000
-      currency: USD
-      duration: 1
-      interval: year
