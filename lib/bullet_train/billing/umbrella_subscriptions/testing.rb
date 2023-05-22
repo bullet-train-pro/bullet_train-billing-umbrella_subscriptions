@@ -7,8 +7,9 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
   def setup
     super
     @jane = create :onboarded_user, first_name: "Jane", last_name: "Smith"
-    @team = @jane.teams.last
-    @other_team = @jane.teams.first
+    @team = @jane.teams.first
+    @other_team = @jane.teams.where.not(id: @team.id).first || create(:team, name: "Other Team")
+    create :membership, user: @jane, team: @other_team, role_ids: [Role.admin.id]
 
     provider_subscription = Billing::External::Subscription.create!(team: @team)
 
