@@ -6,6 +6,8 @@ default:
       - search
     Invitation:
       - read
+      - create
+      - destroy
 
 editor:
   includes:
