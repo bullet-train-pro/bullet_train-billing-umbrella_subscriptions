@@ -69,5 +69,5 @@ then
   cp /home/circleci/project/db/migrate/* db/migrate
 
   # And we also need to generate the system test
-  rails g bullet_train:billing:umbrella_subscriptions:system_test
+  ./bin/rails g bullet_train:billing:umbrella_subscriptions:system_test
 fi
