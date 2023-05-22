@@ -67,4 +67,7 @@ then
   # Oh, maybe because umbrella_subscriptions is the main gem that we're dealing with and so it lives in a
   # directory that doesn't contain it's name? I think it lives in /home/circleci/project. Maybe this'll work...
   cp /home/circleci/project/db/migrate/* db/migrate
+
+  # And we also need to generate the system test
+  rails g bullet_train:billing:umbrella_subscriptions:system_test
 fi
