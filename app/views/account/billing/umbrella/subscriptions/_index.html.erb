@@ -1,4 +1,4 @@
-<% current_ability ||= Ability.new(current_user) %> <% # TODO: Should we need this line? Where is current_ability usually defined? %>
+<% current_ability = Ability.new(current_user) %> <% # TODO: Should we need this line? Where is current_ability usually defined? %>
 <% subscriptions = subscriptions.accessible_by(current_ability) %>
 <% team = @team %>
 <% context ||= team %>
