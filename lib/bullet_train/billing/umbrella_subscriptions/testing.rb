@@ -40,7 +40,8 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
 
     assert page.has_content?("Teams")
 
-    within_team_menu_for_team(@jane.current_team) do
+    #within_team_menu_for_team(@jane.current_team) do
+    within_team_menu_for(display_details) do
       click_link "Billing"
     end
     assert page.has_content?("Umbrella Subscriptions")
@@ -82,7 +83,8 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
 
     assert page.has_content?("Teams")
 
-    within_team_menu_for_team(@jane.current_team) do
+    #within_team_menu_for_team(@jane.current_team) do
+    within_team_menu_for(display_details) do
       click_link "Billing"
     end
     assert page.has_content?("Upgrade")
