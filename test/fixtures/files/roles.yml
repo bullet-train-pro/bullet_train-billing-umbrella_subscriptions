@@ -15,8 +15,6 @@ default:
       - destroy
 
 editor:
-  includes:
-    - default
   models:
     Scaffolding::CompletelyConcrete::TangibleThing: manage
     Scaffolding::AbsolutelyAbstract::CreativeConcept:
@@ -27,12 +25,11 @@ admin:
   includes:
     - editor
   manageable_roles:
-    - editor
     - admin
+    - editor
   models:
     Team: manage
     Membership: manage
-    Invitation: manage
     Scaffolding::AbsolutelyAbstract::CreativeConcept: manage
     Platform::Application: manage
     Scaffolding::AbsolutelyAbstract::CreativeConcepts::Collaborator: manage

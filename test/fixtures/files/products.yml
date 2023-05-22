@@ -1,14 +1,8 @@
 free:
   limits:
-    projects:
-      have:
-        count: 5
-        size_in_gb: 1
     memberships:
       have:
-        # TODO: Should we limit memberships on teams that aren't covered by an account? Or is it enough that we don't allow transfer to them?
-        # We're leaving this as null for now mainly so that we can deploy changes progressively without restricting memberships just yet.
-        count: 1
+        count: 3
         enforcement: hard
         upgradable: true
     scaffolding/absolutely_abstract/creative_concepts:
@@ -23,10 +17,6 @@ solo:
   price: solo_2023
   image: "vol1.png"
   limits:
-    projects:
-      have:
-        count: null
-        size: 50
     memberships:
       have:
         count: 2
@@ -46,7 +36,7 @@ solo:
       currency: USD
       duration: 1
       interval: month
-      <%#trial_days: 1%>
+      #trial_days: 1
     solo_annual_2023:
       amount: 8000
       currency: USD
@@ -56,10 +46,6 @@ band:
   price: band_2023
   image: "vol2.png"
   limits:
-    projects:
-      have:
-        count: null
-        size: 200
     memberships:
       have:
         count: 2
@@ -77,7 +63,7 @@ band:
       currency: USD
       duration: 1
       interval: month
-      <%#trial_days: 1%>
+      #trial_days: 1
       highlight: true
     band_annual_2023:
       amount: 24000
@@ -89,10 +75,6 @@ producer:
   price: producer_2023
   image: "vol3.png"
   limits:
-    projects:
-      have:
-        count: null
-        size: 1000
     memberships:
       have:
         count: null
@@ -110,7 +92,7 @@ producer:
       currency: USD
       duration: 1
       interval: month
-      <%#trial_days: 0%>
+      #trial_days: 0
     producer_annual_2023:
       amount: 74000
       currency: USD
