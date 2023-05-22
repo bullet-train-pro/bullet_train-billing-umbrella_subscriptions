@@ -1,0 +1,8 @@
+Description:
+    Generate stubs for system tests for Umbrella Subscriptions
+
+Example:
+    bin/rails generate bullet_train:billing:umbrella_subscriptions:system_test
+
+    This will create:
+        test/system/umbrella_subscriptions_test.rb
