@@ -1,0 +1,73 @@
+default: # AKA : listener
+  models:
+    Billing::SubscriptionExtension: read
+    Team: read
+    # Project: read
+    Membership:
+      - read
+      - search
+    Invitation:
+      - read
+    #Platform::Application: read
+    #Webhooks::Outgoing::Endpoint: manage
+    #Webhooks::Outgoing::Event: read
+    #Webhooks::Outgoing::Delivery: read
+    #Webhooks::Outgoing::DeliveryAttempt: read
+
+editor: # AKA : colaborator
+  includes:
+    - default
+  models:
+    # TODO: Some tests rely on these. Wah, wah.
+    Scaffolding::CompletelyConcrete::TangibleThing: manage
+    Scaffolding::AbsolutelyAbstract::CreativeConcept:
+      - read
+      - update
+    #Project:
+    #  - update
+    #  - create
+
+project_admin:
+  includes:
+    - editor
+  models:
+    #Project: manage
+
+team_admin:
+  models:
+    Team: manage
+    Membership: manage
+    Invitation: manage
+
+billing_admin:
+  models:
+    #Billing::Subscription: manage
+
+
+
+admin:
+  includes:
+    - editor
+    - project_admin
+    - team_admin
+    - billing_admin
+  manageable_roles:
+    - editor
+    #- project_admin
+    #- team_admin
+    #- billing_admin
+    - admin
+  models:
+    Billing::SubscriptionExtension:
+      - read
+      - create
+      - destroy
+    Scaffolding::AbsolutelyAbstract::CreativeConcept: manage
+    Platform::Application: manage
+    Scaffolding::AbsolutelyAbstract::CreativeConcepts::Collaborator: manage
+    # TODO: Remove these
+    Team: manage
+    Membership: manage
+    Invitation: manage
+
+
