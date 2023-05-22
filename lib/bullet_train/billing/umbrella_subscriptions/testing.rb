@@ -51,7 +51,6 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     pp Billing::Subscription.all.as_json
     puts "-" * 90
 
-
     assert page.has_content?("Umbrella Subscriptions")
 
     click_on "Add New Umbrella Subscription"
