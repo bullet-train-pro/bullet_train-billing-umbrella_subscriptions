@@ -1,5 +1,5 @@
-<% current_ability = Ability.new(current_user) %> <%# TODO: Should we need this line? Where is current_ability usually defined? %>
-<% subscriptions = subscriptions.accessible_by(current_ability) %>
+<%# current_ability = Ability.new(current_user) %> <%# TODO: Should we need this line? Where is current_ability usually defined? And why didn't this work in CI? %>
+<%# subscriptions = subscriptions.accessible_by(current_ability) %>
 <% team = @team %>
 <% context ||= team %>
 <% collection ||= :billing_umbrella_subscriptions %>
