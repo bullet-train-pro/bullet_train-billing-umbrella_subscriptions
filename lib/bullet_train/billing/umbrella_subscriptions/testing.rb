@@ -11,6 +11,10 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     @other_team = @jane.teams.where.not(id: @team.id).first || create(:team, name: "Other Team")
     create :membership, user: @jane, team: @other_team, role_ids: [Role.admin.id]
 
+    @pro_level_product_name ||= "pro"
+    @pro_level_price_id ||= "pro_monthly_2023"
+    @free_level_product_name ||= "free"
+
     provider_subscription = Billing::External::Subscription.create!(team: @team)
 
     subscription = Billing::Subscription.create!({
@@ -21,7 +25,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
 
     Billing::Subscriptions::IncludedPrice.create!(
       subscription: subscription,
-      price_id: "pro_monthly_2023",
+      price_id: @pro_level_price_id,
       quantity: 1
     )
   end
@@ -36,7 +40,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "free", limiter.current_products.first.id
+    assert_equal @free_level_product_name, limiter.current_products.first.id
 
     assert page.has_content?("Teams")
 
@@ -45,11 +49,6 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
       click_link "Billing"
     end
     assert page.has_content?("Subscriptions")
-
-    pp Team.all.as_json
-    puts "-" * 90
-    pp Billing::Subscription.all.as_json
-    puts "-" * 90
 
     assert page.has_content?("Umbrella Subscriptions")
 
@@ -62,7 +61,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "pro", limiter.current_products.first.id
+    assert_equal @pro_level_product_name, limiter.current_products.first.id
 
     click_on "Edit"
     assert page.has_content?("Umbrella Subscription Details")
@@ -73,7 +72,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "free", limiter.current_products.first.id
+    assert_equal @free_level_product_name, limiter.current_products.first.id
   end
 
   def default_umbrella_subscriptions_pull_test(device_name, display_details)
@@ -86,7 +85,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "free", limiter.current_products.first.id
+    assert_equal @free_level_product_name, limiter.current_products.first.id
 
     assert page.has_content?("Teams")
 
@@ -108,7 +107,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "pro", limiter.current_products.first.id
+    assert_equal @pro_level_product_name, limiter.current_products.first.id
 
     click_on "Manage"
     assert page.has_content?("Umbrella Subscription Details")
@@ -119,6 +118,6 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     # TODO: This is a little bit low-level for a system test but for now it's a sanity check.
     # This should really probably be testsed somewhere else.
     limiter = Billing::Limiter.new(@other_team)
-    assert_equal "free", limiter.current_products.first.id
+    assert_equal @free_level_product_name, limiter.current_products.first.id
   end
 end
