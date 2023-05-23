@@ -135,4 +135,13 @@ admin:
 
 Contribution directions go here.
 
+## Releasing
 
+```
+gem install bump
+bump patch
+git push origin main
+gem build
+fury push *gem --as=bullettrain
+rm *gem
+```
