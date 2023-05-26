@@ -96,6 +96,7 @@ en:
       header: Umbrella Subscription Details
       description: Below are the details we have for %{subscription_name}.
       manage_description: You'll also find options for updating these details or removing %{subscription_name} from %{team_name} entirely.
+      invalid_umbrella_subscription: This Umbrella Subscirption is currently inactive because the covering team is not subscribed to a plan that supports Umbrella Subscriptions.
       fields: *fields
       buttons: *buttons
     form: &form
