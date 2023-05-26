@@ -140,7 +140,7 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
     assert page.has_content?("Upgrade")
 
     click_on "Upgrade"
-    assert page.has_content?("Subscribe")
+    assert page.has_content?("Monthly")
     assert !page.has_content?("You may be able to cover your team")
   end
 
