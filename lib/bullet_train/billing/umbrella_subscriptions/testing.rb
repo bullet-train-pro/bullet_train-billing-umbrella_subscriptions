@@ -30,6 +30,10 @@ module BulletTrain::Billing::UmbrellaSubscriptions::Testing
       price_id: @pro_level_price_id,
       quantity: 1
     )
+
+    # We do this so that errors will points to lines in this file instead of
+    # just to the stub that lives in the hosting app.
+    Rails.backtrace_cleaner.remove_silencers!
   end
 
   def default_umbrella_subscriptions_push_test(device_name, display_details)
