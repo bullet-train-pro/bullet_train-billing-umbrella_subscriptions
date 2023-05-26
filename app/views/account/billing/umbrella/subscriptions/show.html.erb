@@ -10,6 +10,13 @@
         <% end %>
 
         <% box.body do %>
+          <% if !@subscription.generic_subscription.valid_umbrella? %>
+            <%= render 'account/shared/alert' do %>
+              <%= t('.invalid_umbrella_subscription') %>
+            <% end %>
+          <% end %>
+
+
           <% with_attribute_settings object: @subscription, strategy: :label do %>
             <%= render 'shared/attributes/belongs_to', attribute: :covering_team %>
             <%= render 'shared/attributes/belongs_to', attribute: :team %>
