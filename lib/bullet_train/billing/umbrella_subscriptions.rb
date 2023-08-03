@@ -13,10 +13,12 @@ module BulletTrain
       class Error < StandardError; end
 
       module AbilitySupport
+        extend ActiveSupport::Concern
+
         def apply_billing_abilities(user)
           super
-          can :read, Billing::Umbrella::Subscription, team_id: user.team_ids
-          can :manage, Billing::Umbrella::Subscription, team_id: user.administrating_team_ids
+          can :read, ::Billing::Umbrella::Subscription, team_id: user.team_ids
+          can :manage, ::Billing::Umbrella::Subscription, team_id: user.administrating_team_ids
         end
       end
     end
