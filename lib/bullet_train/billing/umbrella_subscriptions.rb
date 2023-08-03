@@ -11,7 +11,18 @@ module BulletTrain
   module Billing
     module UmbrellaSubscriptions
       class Error < StandardError; end
-      # Your code goes here...
+
+      module AbilitySupport
+        extend ActiveSupport::Concern
+
+        def apply_billing_abilities(user)
+          super
+          can :read, ::Billing::Umbrella::Subscription, team_id: user.team_ids
+          can :manage, ::Billing::Umbrella::Subscription, team_id: user.administrating_team_ids
+        end
+      end
     end
   end
 end
+
+ActiveSupport.on_load(:bullet_train_billing_ability_support) { prepend BulletTrain::Billing::UmbrellaSubscriptions::AbilitySupport }
